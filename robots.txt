@@ -1,0 +1,14 @@
+# robots.txt for NeuroDeny
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nickseen.github.io/NeuroDeny/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 0
+
+# Disallow admin/technical files
+Disallow: /css/
+Disallow: /*.css$
+Disallow: /*.js$
