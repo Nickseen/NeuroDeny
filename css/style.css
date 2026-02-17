@@ -620,34 +620,40 @@ section h2::after {
 
 /* Планшеты портретной ориентации */
 @media (max-width: 768px) {
-    /* Навигация */
+    /* Навигация - компактная в одну строку */
     .navigation {
-        padding: 0.4rem 0;
+        padding: 0.5rem 0;
     }
     
     .nav-content {
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
     
     .logo img {
-        height: 35px;
+        height: 40px;
     }
     
+    /* Скрываем пункты меню, оставляем только телефон */
     .nav-menu {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
-        font-size: 0.85rem;
+        display: flex;
+        gap: 0;
     }
     
-    .nav-menu a {
-        padding: 0.3rem 0.6rem;
-    }
-    
-    .nav-phone {
+    .nav-menu li:not(.nav-phone) {
         display: none;
+    }
+    
+    /* Показываем только кнопку телефона */
+    .nav-phone {
+        display: block;
+    }
+    
+    .nav-phone a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
     }
     
     .nav-phone a {
@@ -728,22 +734,22 @@ section h2::after {
 
 /* Мобильные телефоны */
 @media (max-width: 480px) {
-    /* Навигация */
+    /* Навигация - минималистичная */
     .navigation {
-        padding: 0.3rem 0;
+        padding: 0.4rem 0;
+    }
+    
+    .container {
+        padding: 0 10px;
     }
     
     .logo img {
-        height: 30px;
+        height: 35px;
     }
     
-    .nav-menu {
-        gap: 0.4rem;
+    .nav-phone a {
+        padding: 0.35rem 0.7rem;
         font-size: 0.8rem;
-    }
-    
-    .nav-menu a {
-        padding: 0.25rem 0.5rem;
     }
     
     /* Hero */
