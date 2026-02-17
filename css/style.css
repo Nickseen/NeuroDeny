@@ -847,15 +847,18 @@ section h2::after {
     }
     
     .service-list li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25rem;
         padding: 0.75rem 0;
+        gap: 0.5rem;
     }
     
-    .service-name,
+    .service-name {
+        font-size: 0.85rem;
+        flex: 1;
+    }
+    
     .service-price {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
     }
     
     /* Отзывы */
