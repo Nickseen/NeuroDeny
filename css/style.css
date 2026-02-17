@@ -54,6 +54,12 @@
     align-items: center;
 }
 
+.logo {
+    display: inline-block;
+    line-height: 0;
+    cursor: pointer;
+}
+
 .logo img {
     height: 50px;
     transition: transform 0.3s ease;
@@ -632,28 +638,25 @@ section h2::after {
     }
     
     .logo img {
-        height: 40px;
+        height: 35px;
     }
     
-    /* Скрываем пункты меню, оставляем только телефон */
+    /* Компактное меню справа */
     .nav-menu {
         display: flex;
-        gap: 0;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        font-size: 0.75rem;
     }
     
-    .nav-menu li:not(.nav-phone) {
-        display: none;
-    }
-    
-    /* Показываем только кнопку телефона */
-    .nav-phone {
-        display: block;
-    }
-    
-    .nav-phone a {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.85rem;
+    .nav-menu a {
+        padding: 0.3rem 0.5rem;
         white-space: nowrap;
+    }
+    
+    /* Скрываем кнопку телефона - есть плавающая кнопка */
+    .nav-phone {
+        display: none;
     }
     
     .nav-phone a {
@@ -740,16 +743,21 @@ section h2::after {
     }
     
     .container {
-        padding: 0 10px;
+        padding: 0 8px;
     }
     
     .logo img {
-        height: 35px;
+        height: 30px;
     }
     
-    .nav-phone a {
-        padding: 0.35rem 0.7rem;
-        font-size: 0.8rem;
+    /* Очень компактное меню */
+    .nav-menu {
+        gap: 0.25rem;
+        font-size: 0.68rem;
+    }
+    
+    .nav-menu a {
+        padding: 0.25rem 0.35rem;
     }
     
     /* Hero */
