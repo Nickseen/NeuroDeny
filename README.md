@@ -39,15 +39,15 @@ The clinic is led by Dr. Petkova Deniza Konstantinovna, a neurologist with highe
 
 ### Mobile View
 
-![Mobile Screenshot 1](screenshots/ph1.png)
-![Mobile Screenshot 2](screenshots/ph2.png)
-![Mobile Screenshot 3](screenshots/ph3.png)
+<img src="screenshots/ph1.png" width="150">
+<img src="screenshots/ph2.png" width="150">
+<img src="screenshots/ph3.png" width="150">
 
 *Responsive design optimized for mobile devices*
 
-![Mobile Screenshot 4](screenshots/ph4.png)
-![Mobile Screenshot 5](screenshots/ph5.png)
-![Mobile Screenshot 6](screenshots/ph6.png)
+<img src="screenshots/ph4.png" width="150">
+<img src="screenshots/ph5.png" width="150">
+<img src="screenshots/ph6.png" width="150">
 
 ---
 
