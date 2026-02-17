@@ -28,7 +28,7 @@
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#reviews">Отзывы</a></li>
                     <li><a href="#contact">Контакты</a></li>
-                    <li class="nav-phone"><a href="tel:+373696939900">📞 +373 696 93 900</a></li>
+                    <li class="nav-phone"><a href="tel:+37369693900">📞 +373 696 93 900</a></li>
                 </ul>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <p class="description">Профессиональная медицинская помощь с заботой о вашем здоровье</p>
             <div class="cta-buttons">
                 <a href="#contact" class="cta-button">Записаться на прием</a>
-                <a href="tel:+373696939900" class="cta-button cta-phone">📞 Позвонить</a>
+                <a href="tel:+37369693900" class="cta-button cta-phone">📞 Позвонить</a>
             </div>
         </div>
     </section>
@@ -77,7 +77,7 @@
                         <img src="images/doctors/neurologist.png" alt="Врач невролог">
                     </div>
                     <h3>Врач-невролог, невропедиатр</h3>
-                    <p class="doctor-name">[ФИО]</p>
+                    <p class="doctor-name">Петкова Дениза Константиновна</p>
                     <p class="doctor-info"><strong>★ Высшая категория</strong></p>
                     <p class="doctor-info">Образование: [...]</p>
                     <p class="doctor-info">Стаж: [...] лет</p>
@@ -147,12 +147,19 @@
             <h2>Отзывы пациентов</h2>
             <div class="reviews-grid">
                 <div class="review-card">
-                    <p class="review-text">"Отличный специалист, внимательный подход к пациентам. Рекомендую!"</p>
-                    <p class="review-author">— Имя пациента</p>
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">"Хороший врач, очень внимательный как к взрослым, так и к детям. Все объясняет очень подробно. Строго соблюдает правила масок и бахил, и не принимает людей с простудой, что защищает других пациентов."</p>
+                    <p class="review-author">— Наталья Манастырлы</p>
                 </div>
                 <div class="review-card">
-                    <p class="review-text">"Профессиональная помощь, современное оборудование. Спасибо!"</p>
-                    <p class="review-author">— Имя пациента</p>
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">"Мы несколько раз были у Денизы Константиновны. Она очень хороший врач!"</p>
+                    <p class="review-author">— Светлана Плагова</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">"Очень хороший невролог. Очень хорошо лечит детей."</p>
+                    <p class="review-author">— Анастасия Ибришим</p>
                 </div>
             </div>
         </div>
@@ -166,7 +173,7 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <h3>Телефон</h3>
-                        <p><a href="tel:+373696939900">+373 696 93 900</a></p>
+                        <p><a href="tel:+37369693900">+373 696 93 900</a></p>
                     </div>
                     <div class="contact-item">
                         <h3>Email</h3>
@@ -174,7 +181,7 @@
                     </div>
                     <div class="contact-item">
                         <h3>Адрес</h3>
-                        <p>8M23+PJ<br>Comrat, MD-3805<br>Молдова</p>
+                        <p>г. Комрат, пер. Третьякова 5<br>MD-3805, Молдова</p>
                     </div>
                     <div class="contact-item">
                         <h3>График работы</h3>
@@ -187,7 +194,7 @@
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.5!2d28.6541239!3d46.3017673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c5d31b58767b703%3A0xc84793c05ef95bd4!2z0JrQu9C40L3QuNC60LAgIk5ldXJvRGVueSI!5e0!3m2!1sru!2s!4v1234567890"
                         width="100%" 
                         height="400" 
-                        style="border:0; border-radius: 10px;" 
+                        style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade">
@@ -205,8 +212,47 @@
     </footer>
 
     <!-- Floating call button for mobile -->
-    <a href="tel:+373696939900" class="floating-call-btn" aria-label="Позвонить в клинику">
+    <a href="tel:+37369693900" class="floating-call-btn" aria-label="Позвонить в клинику">
         📞
     </a>
+    
+    <script>
+        // Smooth scroll animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections except hero
+        document.querySelectorAll('section:not(.hero)').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

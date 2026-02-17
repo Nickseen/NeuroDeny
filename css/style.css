@@ -12,6 +12,23 @@
     --bg-light: #f8f9fa;
 }
 
+/* Глобальные анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 /* Контейнер */
 .container {
     max-width: 1200px;
@@ -21,12 +38,14 @@
 
 /* Навигация */
 .navigation {
-    background: var(--bg-white);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: rgba(253, 253, 254, 0.98);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(37, 82, 130, 0.1);
     position: sticky;
     top: 0;
     z-index: 100;
     padding: 1rem 0;
+    transition: all 0.3s ease;
 }
 
 .nav-content {
@@ -37,6 +56,11 @@
 
 .logo img {
     height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
 }
 
 .nav-menu {
@@ -47,11 +71,28 @@
 .nav-menu a {
     color: var(--text-dark);
     font-weight: 500;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary-color);
+    transition: width 0.3s ease;
 }
 
 .nav-menu a:hover {
     color: var(--primary-color);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
 }
 
 .nav-phone {
@@ -59,41 +100,72 @@
 }
 
 .nav-phone a {
-    background: var(--secondary-color);
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 25px;
     font-weight: 600;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(6, 148, 203, 0.3);
 }
 
 .nav-phone a:hover {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
+    box-shadow: 0 4px 15px rgba(6, 148, 203, 0.5);
+    transform: translateY(-2px);
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
     color: white;
     text-align: center;
-    padding: 100px 20px;
+    padding: 120px 20px 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
 }
 
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.8s ease-out;
+    position: relative;
+    z-index: 1;
 }
 
 .hero .subtitle {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease-out 0.1s backwards;
+    position: relative;
+    z-index: 1;
 }
 
 .hero .description {
     font-size: 1.1rem;
     margin-bottom: 2rem;
-    opacity: 0.9;
+    opacity: 0.95;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    position: relative;
+    z-index: 1;
 }
 
 .cta-buttons {
@@ -101,6 +173,9 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+    position: relative;
+    z-index: 1;
 }
 
 .cta-button {
@@ -111,23 +186,31 @@
     border-radius: 50px;
     font-weight: bold;
     font-size: 1.1rem;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s ease;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    background: var(--bg-light);
+    color: var(--secondary-color);
 }
 
 .cta-phone {
-    background: var(--secondary-color);
+    background: transparent;
     color: white;
+    border: 2px solid white;
 }
 
 .cta-phone:hover {
-    background: var(--primary-color);
-    color: white;
+    background: white;
+    color: var(--primary-color);
+    border-color: white;
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
 }
 
 /* Секции */
@@ -135,11 +218,27 @@ section {
     padding: 80px 20px;
 }
 
+/* Заголовки секций */
 section h2 {
-    text-align: center;
     font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
     margin-bottom: 3rem;
-    color: var(--text-dark);
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    border-radius: 2px;
 }
 
 /* О нас */
@@ -155,9 +254,10 @@ section h2 {
 }
 
 .about-text p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--text-light);
     line-height: 1.8;
+    font-size: 1.05rem;
 }
 
 .about-images {
@@ -170,13 +270,14 @@ section h2 {
     width: 100%;
     height: 300px;
     object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(37, 82, 130, 0.15);
+    transition: all 0.3s ease;
 }
 
 .clinic-photo:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(37, 82, 130, 0.25);
 }
 
 /* Врачи */
@@ -188,15 +289,18 @@ section h2 {
 
 .doctor-card {
     background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(37, 82, 130, 0.1);
     text-align: center;
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(37, 82, 130, 0.05);
 }
 
 .doctor-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(37, 82, 130, 0.2);
+    border-color: var(--accent-color);
 }
 
 .doctor-image img {
@@ -206,7 +310,13 @@ section h2 {
     object-fit: cover;
     margin: 0 auto 1.5rem;
     border: 5px solid var(--accent-color);
-    box-shadow: 0 5px 20px rgba(6, 148, 203, 0.2);
+    box-shadow: 0 8px 25px rgba(6, 148, 203, 0.3);
+    transition: all 0.3s ease;
+}
+
+.doctor-card:hover .doctor-image img {
+    box-shadow: 0 12px 35px rgba(6, 148, 203, 0.4);
+    transform: scale(1.05);
 }
 
 .doctor-card h3 {
@@ -227,35 +337,51 @@ section h2 {
 
 /* Услуги */
 .services {
-    background: var(--bg-light);
+    background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
 }
 
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .service-category {
     background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(37, 82, 130, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(37, 82, 130, 0.05);
+}
+
+.service-category:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(37, 82, 130, 0.2);
+    border-color: var(--accent-color);
 }
 
 .service-category h3 {
     color: var(--primary-color);
     margin-bottom: 1.5rem;
     text-align: left;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
     border-bottom: 3px solid var(--secondary-color);
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .service-list li {
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(37, 82, 130, 0.1);
+    transition: all 0.3s ease;
+}
+
+.service-list li:hover {
+    padding-left: 10px;
+    color: var(--primary-color);
 }
 
 .service-list li:last-child {
@@ -264,40 +390,64 @@ section h2 {
 
 .service-price {
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--secondary-color);
+    font-size: 1.05rem;
 }
 
 /* Отзывы */
 .reviews-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .review-card {
     background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-    border-left: 4px solid var(--secondary-color);
-    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(37, 82, 130, 0.1);
+    border-left: 5px solid var(--secondary-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.review-card::before {
+    content: '\2605';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 4rem;
+    color: var(--accent-color);
+    opacity: 0.1;
 }
 
 .review-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 25px rgba(6, 148, 203, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(6, 148, 203, 0.25);
+    border-left-color: var(--accent-color);
 }
 
 .review-text {
     font-style: italic;
     color: var(--text-light);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     line-height: 1.8;
+    font-size: 1.05rem;
+    position: relative;
+    z-index: 1;
 }
 
 .review-author {
     font-weight: bold;
     color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.review-rating {
+    color: #FFB800;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .review-text::before {
@@ -310,7 +460,7 @@ section h2 {
 
 /* Контакты */
 .contact {
-    background: var(--bg-light);
+    background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-light) 100%);
 }
 
 .contact-content {
@@ -321,40 +471,88 @@ section h2 {
 
 .contact-item {
     margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(37, 82, 130, 0.08);
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    box-shadow: 0 8px 25px rgba(37, 82, 130, 0.15);
+    transform: translateY(-3px);
 }
 
 .contact-item h3 {
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
 .contact-item a {
     color: var(--text-dark);
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    font-size: 1.05rem;
 }
 
 .contact-item a:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color);
+    padding-left: 5px;
 }
 
 .appointment-info {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 2px solid var(--primary-color);
-    color: var(--primary-color);
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(37, 82, 130, 0.2);
 }
 
 .appointment-info strong {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.contact-map iframe {
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(37, 82, 130, 0.15);
+    transition: all 0.3s ease;
+}
+
+.contact-map iframe:hover {
+    box-shadow: 0 15px 40px rgba(37, 82, 130, 0.25);
+    transform: translateY(-3px);
 }
 
 /* Footer */
 .footer {
-    background: var(--text-dark);
+    background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
     color: white;
     text-align: center;
-    padding: 2rem;
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="footergrid" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23footergrid)"/></svg>');
+    opacity: 0.5;
+}
+
+.footer p {
+    position: relative;
+    z-index: 1;
+    font-size: 1.05rem;
+    opacity: 0.95;
 }
 
 /* Floating call button (mobile only) */
