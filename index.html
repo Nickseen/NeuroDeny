@@ -35,6 +35,7 @@
     
     <!-- Mobile App Meta Tags -->
     <meta name="theme-color" content="#255282">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="NeuroDeny">
@@ -99,81 +100,40 @@
     <!-- Mascot (Brain Character) -->
     <div id="mascot" class="mascot-container">
         <div class="mascot-tooltip">✨ Делайте перерыв каждый час при работе за компьютером!</div>
-        <img src="images/mascot/image.png" alt="Brain Mascot" class="mascot-brain" id="mascot-img"/>
+        <div class="mascot-eyes">
+            <img src="images/mascot/blink.png" alt="" class="mascot-blink">
+            <img src="images/mascot/image.png" alt="Brain Mascot" class="mascot-open">
+        </div>
     </div>
 
     <script>
-        // Mascot functionality
-        (function() {
-            const mascot = document.getElementById('mascot');
-            const tooltip = document.querySelector('.mascot-tooltip');
-            const mascotImg = document.getElementById('mascot-img');
-            
-            const imageOpen = 'images/mascot/image.png';
-            const imageBlink = 'images/mascot/blink.png';
-            
-            // Show mascot after 2 seconds delay with entrance animation
-            setTimeout(() => {
-                mascot.classList.add('show');
-                
-                // Little bounce after appearing
-                setTimeout(() => {
-                    mascot.style.animation = 'bounce 0.6s ease';
-                    setTimeout(() => {
-                        mascot.style.animation = '';
-                    }, 600);
-                }, 800);
-            }, 2000);
-            
-            // Blinking animation
-            function blink() {
-                mascotImg.src = imageBlink;
-                setTimeout(() => {
-                    mascotImg.src = imageOpen;
-                }, 150); // Blink duration
+        // Mascot: click to scroll to contacts
+        document.getElementById('mascot').addEventListener('click', () => {
+            const contact = document.querySelector('#contact');
+            if (contact) contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        
+        // Diploma Modal Functions
+        function openDiploma(imageSrc) {
+            const modal = document.getElementById('diplomaModal');
+            const modalImg = document.getElementById('diplomaImage');
+            modal.style.display = 'flex';
+            modalImg.src = imageSrc;
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        function closeDiploma() {
+            const modal = document.getElementById('diplomaModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeDiploma();
             }
-            
-            // Random blink every 3-5 seconds
-            function scheduleNextBlink() {
-                const delay = Math.random() * 2000 + 3000; // Random between 3-5 seconds
-                setTimeout(() => {
-                    blink();
-                    scheduleNextBlink();
-                }, delay);
-            }
-            
-            // Start blinking after mascot appears
-            setTimeout(() => {
-                scheduleNextBlink();
-            }, 4000);
-            
-            // Show tooltip on hover
-            mascot.addEventListener('mouseenter', () => {
-                tooltip.classList.add('show');
-            });
-            
-            mascot.addEventListener('mouseleave', () => {
-                tooltip.classList.remove('show');
-            });
-            
-            // Click to scroll to contact section
-            mascot.addEventListener('click', () => {
-                const contactSection = document.querySelector('#contact');
-                if (contactSection) {
-                    contactSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Quick wink on click
-                    blink();
-                }
-            });
-            
-            // Preload blink image for smooth transition
-            const preloadImg = new Image();
-            preloadImg.src = imageBlink;
-        })();
+        });
     </script>
 
     <!-- Навигация -->
@@ -189,6 +149,7 @@
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#reviews">Отзывы</a></li>
                     <li><a href="#contact">Контакты</a></li>
+                    <li><a href="#diplomas">Дипломы</a></li>
                     <li class="nav-phone"><a href="tel:+37369693900">📞 +373 696 93 900</a></li>
                 </ul>
             </div>
@@ -381,10 +342,39 @@
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
+                    
+                    <!-- Diplomas Gallery -->
+                    <div class="diplomas-section" id="diplomas">
+                        <h3>Дипломы и сертификаты</h3>
+                        <div class="diplomas-gallery">
+                            <div class="diploma-thumbnail" onclick="openDiploma('images/diplomas/chrome_RmlS4rCUmO.png')">
+                                <img src="images/diplomas/chrome_RmlS4rCUmO.png" alt="Диплом 1">
+                                <div class="diploma-overlay"></div>
+                            </div>
+                            <div class="diploma-thumbnail" onclick="openDiploma('images/diplomas/chrome_nuA8xIi2om.png')">
+                                <img src="images/diplomas/chrome_nuA8xIi2om.png" alt="Диплом 2">
+                                <div class="diploma-overlay"></div>
+                            </div>
+                            <div class="diploma-thumbnail" onclick="openDiploma('images/diplomas/Telegram_DZ7aUqimYz.jpg')">
+                                <img src="images/diplomas/Telegram_DZ7aUqimYz.jpg" alt="Диплом 3">
+                                <div class="diploma-overlay"></div>
+                            </div>
+                            <div class="diploma-thumbnail" onclick="openDiploma('images/diplomas/Telegram_Mmlk6spNHu.png')">
+                                <img src="images/diplomas/Telegram_Mmlk6spNHu.png" alt="Диплом 4">
+                                <div class="diploma-overlay"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
     </section>
+
+    <!-- Diploma Modal -->
+    <div id="diplomaModal" class="diploma-modal" onclick="closeDiploma()">
+        <span class="diploma-close">&times;</span>
+        <img class="diploma-modal-content" id="diplomaImage">
+        <div class="diploma-caption">Нажмите в любом месте для закрытия</div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
