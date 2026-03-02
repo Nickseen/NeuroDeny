@@ -1025,8 +1025,7 @@ section h2::after {
     z-index: 999;
     cursor: pointer;
     opacity: 0;
-    transform: translateY(100px) scale(0.5) rotate(-10deg);
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: mascot-appear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both 2s;
     filter: drop-shadow(0 10px 25px rgba(37, 82, 130, 0.3));
 }
 
@@ -1040,23 +1039,34 @@ section h2::after {
     transition: transform 0.1s ease;
 }
 
-.mascot-container.show {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotate(0deg);
-}
-
-/* Brain Image */
-.mascot-brain {
+/* Eyes wrapper */
+.mascot-eyes {
+    position: relative;
     width: 100%;
     height: 100%;
     animation: float 3s ease-in-out infinite;
     transition: transform 0.5s ease;
+}
+
+.mascot-container:hover .mascot-eyes {
+    transform: scale(1.05);
+    animation: float 2.5s ease-in-out infinite;
+}
+
+.mascot-blink,
+.mascot-open {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
-.mascot-container:hover .mascot-brain {
-    transform: scale(1.05);
-    animation: float 2.5s ease-in-out infinite;
+/* Open eyes blink animation — starts after mascot appears (delay 4s total) */
+.mascot-open {
+    animation: mascot-blink-anim 4s infinite;
+    animation-delay: 4s;
 }
 
 /* Tooltip with enhanced design */
@@ -1101,7 +1111,7 @@ section h2::after {
     pointer-events: none;
 }
 
-.mascot-tooltip.show {
+.mascot-container:hover .mascot-tooltip {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
@@ -1122,20 +1132,24 @@ section h2::after {
     }
 }
 
-/* Bounce animation on hover */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0) scale(1);
+/* Mascot entrance animation */
+@keyframes mascot-appear {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.5) rotate(-10deg);
     }
-    30% {
-        transform: translateY(-15px) scale(1.05);
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
     }
-    50% {
-        transform: translateY(-10px) scale(1.03);
-    }
-    70% {
-        transform: translateY(-12px) scale(1.04);
-    }
+}
+
+/* Blink: briefly hides open-eyes image to reveal blink image underneath */
+@keyframes mascot-blink-anim {
+    0%, 93%  { opacity: 1; }
+    95%      { opacity: 0; }
+    97%      { opacity: 0; }
+    99%, 100% { opacity: 1; }
 }
 
 /* Mobile adjustments for mascot */
@@ -1170,13 +1184,200 @@ section h2::after {
 
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    .mascot-container,
-    .mascot-brain {
+    .mascot-container {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    .mascot-eyes {
         animation: none !important;
     }
     
-    .mascot-container.show {
-        transition: opacity 0.3s ease;
+    .mascot-open {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}
+
+/* ==================== DIPLOMAS GALLERY ==================== */
+
+.diplomas-section {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 2px solid var(--bg-light);
+}
+
+.diplomas-section h3 {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.diplomas-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
+}
+
+.diploma-thumbnail {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 82, 130, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: 3/4;
+}
+
+.diploma-thumbnail:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(37, 82, 130, 0.25);
+}
+
+.diploma-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+.diploma-thumbnail:hover img {
+    filter: brightness(1.1);
+}
+
+.diploma-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(37, 82, 130, 0.9), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.diploma-thumbnail:hover .diploma-overlay {
+    opacity: 1;
+}
+
+/* Diploma Modal */
+.diploma-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.diploma-modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.diploma-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 50px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+    z-index: 10001;
+}
+
+.diploma-close:hover,
+.diploma-close:focus {
+    color: var(--secondary-color);
+}
+
+.diploma-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Mobile adjustments for diplomas */
+@media (max-width: 768px) {
+    .diplomas-section {
+        margin-top: 30px;
+        padding-top: 30px;
+    }
+    
+    .diplomas-section h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .diplomas-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .diploma-close {
+        top: 10px;
+        right: 15px;
+        font-size: 40px;
+    }
+    
+    .diploma-modal-content {
+        max-width: 95%;
+        max-height: 85vh;
+    }
+    
+    .diploma-caption {
+        font-size: 0.8rem;
+        bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .diplomas-gallery {
+        grid-template-columns: 1fr;
+        max-width: 300px;
     }
 }
 
