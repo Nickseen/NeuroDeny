@@ -802,6 +802,9 @@ section h2::after {
     /* Показываем плавающую кнопку звонка */
     .floating-call-btn {
         display: flex;
+        right: auto;
+        left: 20px;
+        bottom: 30px;
     }
 }
 
@@ -1167,12 +1170,22 @@ section h2::after {
         white-space: normal;
         max-width: 180px;
         right: -5px;
+        /* Auto-show on mobile: appear after mascot arrives, show 4s, then hide */
+        animation: mobile-tooltip-show 7s ease both;
+        animation-delay: 3s;
     }
     
     .mascot-tooltip::after {
         right: 25px;
         border-width: 8px;
     }
+}
+
+@keyframes mobile-tooltip-show {
+    0%   { opacity: 0; transform: translateY(10px) scale(0.9); }
+    12%  { opacity: 1; transform: translateY(0) scale(1); }
+    75%  { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(10px) scale(0.9); }
 }
 
 /* Reduce animations on mobile for performance */
@@ -1353,8 +1366,8 @@ section h2::after {
     }
     
     .diplomas-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
     
     .diploma-close {
@@ -1376,8 +1389,8 @@ section h2::after {
 
 @media (max-width: 480px) {
     .diplomas-gallery {
-        grid-template-columns: 1fr;
-        max-width: 300px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
 }
 
