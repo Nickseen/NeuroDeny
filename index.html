@@ -96,6 +96,86 @@
     </script>
 </head>
 <body>
+    <!-- Mascot (Brain Character) -->
+    <div id="mascot" class="mascot-container">
+        <div class="mascot-tooltip">✨ Делайте перерыв каждый час при работе за компьютером!</div>
+        <img src="images/mascot/image.png" alt="Brain Mascot" class="mascot-brain" id="mascot-img"/>
+    </div>
+
+    <script>
+        // Mascot functionality
+        (function() {
+            const mascot = document.getElementById('mascot');
+            const tooltip = document.querySelector('.mascot-tooltip');
+            const mascotImg = document.getElementById('mascot-img');
+            
+            const imageOpen = 'images/mascot/image.png';
+            const imageBlink = 'images/mascot/blink.png';
+            
+            // Show mascot after 2 seconds delay with entrance animation
+            setTimeout(() => {
+                mascot.classList.add('show');
+                
+                // Little bounce after appearing
+                setTimeout(() => {
+                    mascot.style.animation = 'bounce 0.6s ease';
+                    setTimeout(() => {
+                        mascot.style.animation = '';
+                    }, 600);
+                }, 800);
+            }, 2000);
+            
+            // Blinking animation
+            function blink() {
+                mascotImg.src = imageBlink;
+                setTimeout(() => {
+                    mascotImg.src = imageOpen;
+                }, 150); // Blink duration
+            }
+            
+            // Random blink every 3-5 seconds
+            function scheduleNextBlink() {
+                const delay = Math.random() * 2000 + 3000; // Random between 3-5 seconds
+                setTimeout(() => {
+                    blink();
+                    scheduleNextBlink();
+                }, delay);
+            }
+            
+            // Start blinking after mascot appears
+            setTimeout(() => {
+                scheduleNextBlink();
+            }, 4000);
+            
+            // Show tooltip on hover
+            mascot.addEventListener('mouseenter', () => {
+                tooltip.classList.add('show');
+            });
+            
+            mascot.addEventListener('mouseleave', () => {
+                tooltip.classList.remove('show');
+            });
+            
+            // Click to scroll to contact section
+            mascot.addEventListener('click', () => {
+                const contactSection = document.querySelector('#contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Quick wink on click
+                    blink();
+                }
+            });
+            
+            // Preload blink image for smooth transition
+            const preloadImg = new Image();
+            preloadImg.src = imageBlink;
+        })();
+    </script>
+
     <!-- Навигация -->
     <nav class="navigation">
         <div class="container">
