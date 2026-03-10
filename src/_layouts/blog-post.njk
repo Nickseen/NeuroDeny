@@ -1,0 +1,27 @@
+---
+layout: base.njk
+---
+
+<article class="blog-post container" style="max-width: 900px; margin: 100px auto 50px; padding: 20px;">
+    <header class="post-header" style="margin-bottom: 2rem; border-bottom: 2px solid #e0e0e0; padding-bottom: 1.5rem;">
+        <h1 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem;">{{ title }}</h1>
+        <div class="post-meta" style="color: #666; font-size: 0.95rem;">
+            <time datetime="{{ date }}">{{ date | dateFormat }}</time>
+            {% if author %} • <span>{{ author }}</span>{% endif %}
+        </div>
+    </header>
+    
+    {% if image %}
+    <div class="post-image" style="margin-bottom: 2rem;">
+        <img src="{{ image }}" alt="{{ title }}" style="width: 100%; border-radius: 8px;">
+    </div>
+    {% endif %}
+    
+    <div class="post-content" style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+        {{ content | safe }}
+    </div>
+    
+    <footer class="post-footer" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
+        <a href="/#home" class="back-link" style="color: var(--primary-color); text-decoration: none;">← Вернуться на главную</a>
+    </footer>
+</article>
