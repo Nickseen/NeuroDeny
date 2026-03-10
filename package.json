@@ -1,0 +1,26 @@
+{
+  "name": "neurodeny",
+  "version": "1.0.0",
+  "description": "A professional landing page for **SRL NeuroDeny** - a real medical clinic in Comrat, Moldova, specializing in neurology, neuropediatrics, and surgery.",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "debug": "DEBUG=Eleventy* eleventy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nickseen/NeuroDeny.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nickseen/NeuroDeny/issues"
+  },
+  "homepage": "https://github.com/Nickseen/NeuroDeny#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}
