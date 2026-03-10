@@ -35,6 +35,7 @@ module.exports = function(eleventyConfig) {
   });
 
   return {
+    pathPrefix: "/NeuroDeny/",
     dir: {
       input: "src",
       output: "_site",
