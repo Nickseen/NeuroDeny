@@ -1,0 +1,134 @@
+backend:
+  name: git-gateway
+  branch: lab4
+
+# Опция для локальной разработки (раскомментировать при необходимости)
+# local_backend: true
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "ru"
+
+collections:
+  # Настройки сайта
+  - name: "settings"
+    label: "⚙️ Настройки сайта"
+    files:
+      - name: "site"
+        label: "Основные настройки"
+        file: "src/_data/settings.json"
+        fields:
+          - label: "Основная информация"
+            name: "site"
+            widget: "object"
+            fields:
+              - { label: "Название клиники", name: "name", widget: "string" }
+              - { label: "SEO Заголовок", name: "title", widget: "string" }
+              - { label: "SEO Описание", name: "description", widget: "text" }
+              - { label: "SEO Ключевые слова", name: "keywords", widget: "text", required: false }
+              - { label: "Автор", name: "author", widget: "string" }
+              - { label: "URL сайта", name: "url", widget: "string" }
+              - { label: "Язык", name: "language", widget: "string", default: "ru" }
+              - { label: "Цвет темы", name: "themeColor", widget: "string", default: "#255282" }
+          
+          - label: "Контакты"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Телефон", name: "phone", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - label: "Адрес"
+                name: "address"
+                widget: "object"
+                fields:
+                  - { label: "Улица", name: "street", widget: "string" }
+                  - { label: "Город", name: "city", widget: "string" }
+                  - { label: "Индекс", name: "postalCode", widget: "string" }
+                  - { label: "Страна", name: "country", widget: "string", default: "Молдова" }
+              - label: "Координаты"
+                name: "coordinates"
+                widget: "object"
+                fields:
+                  - { label: "Широта", name: "latitude", widget: "string" }
+                  - { label: "Долгота", name: "longitude", widget: "string" }
+              - label: "График работы"
+                name: "workingHours"
+                widget: "object"
+                fields:
+                  - { label: "Будние дни", name: "weekdays", widget: "string" }
+                  - { label: "Суббота", name: "saturday", widget: "string" }
+                  - { label: "Запись на прием", name: "appointment", widget: "string" }
+          
+          - label: "Социальные сети"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Facebook", name: "facebook", widget: "string", required: false }
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "Telegram", name: "telegram", widget: "string", required: false }
+
+  # Врачи
+  - name: "doctors"
+    label: "👨‍⚕️ Врачи"
+    file: "src/_data/doctors.json"
+    fields:
+      - label: "Список врачей"
+        name: "doctors"
+        widget: "list"
+        fields:
+          - { label: "ФИО", name: "name", widget: "string" }
+          - { label: "Специализация", name: "specialty", widget: "string" }
+          - { label: "Опыт работы", name: "experience", widget: "string" }
+          - { label: "Категория", name: "category", widget: "string" }
+          - { label: "Описание", name: "description", widget: "text" }
+          - { label: "Фото", name: "image", widget: "image" }
+          - { label: "Порядок", name: "order", widget: "number", value_type: "int", default: 1 }
+
+  # Услуги
+  - name: "services"
+    label: "💊 Услуги"
+    file: "src/_data/services.json"
+    fields:
+      - label: "Категории услуг"
+        name: "services"
+        widget: "list"
+        fields:
+          - { label: "Категория", name: "category", widget: "string" }
+          - label: "Услуги"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Название", name: "name", widget: "string" }
+              - { label: "Цена", name: "price", widget: "string" }
+
+  # Отзывы
+  - name: "reviews"
+    label: "⭐ Отзывы"
+    file: "src/_data/reviews.json"
+    fields:
+      - label: "Отзывы пациентов"
+        name: "reviews"
+        widget: "list"
+        fields:
+          - { label: "Автор", name: "author", widget: "string" }
+          - { label: "Рейтинг", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+          - { label: "Текст отзыва", name: "text", widget: "text" }
+          - { label: "Дата", name: "date", widget: "date", format: "YYYY-MM-DD" }
+          - { label: "Показывать на главной", name: "featured", widget: "boolean", default: true }
+
+  # Блог/Статьи
+  - name: "blog"
+    label: "📝 Блог"
+    folder: "src/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "blog-post.njk" }
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Описание", name: "description", widget: "text" }
+      - { label: "Дата публикации", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Автор", name: "author", widget: "string", default: "Петкова Дениза Константиновна" }
+      - { label: "Изображение", name: "image", widget: "image", required: false }
+      - { label: "Теги", name: "tags", widget: "list", required: false }
+      - { label: "Содержание", name: "body", widget: "markdown" }

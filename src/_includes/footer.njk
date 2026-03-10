@@ -1,0 +1,14 @@
+<!-- Footer (Tailwind) -->
+<footer class="relative overflow-hidden text-white text-center py-12 px-8 bg-gradient-to-br from-[#1a2a4a] to-primary">
+    <div class="max-w-6xl mx-auto relative z-10">
+        <p class="text-[1.05rem] opacity-95">&copy; 2026 SRL NeuroDeny. Все права защищены.</p>
+    </div>
+</footer>
+
+<!-- Floating call button for mobile (Tailwind) -->
+<a href="tel:{{ settings.contact.phone | replace(' ', '') }}" 
+   class="flex md:hidden fixed bottom-[15px] left-5 w-[60px] h-[60px] bg-secondary text-white rounded-full text-2xl items-center justify-center no-underline z-[1000] transition-transform duration-300 hover:scale-110 [animation:pulse_2s_infinite]"
+   id="floating-call-btn"
+   aria-label="Позвонить в клинику">
+    📞
+</a>

@@ -1,0 +1,176 @@
+---
+layout: base.njk
+title: "NeuroDeny - Невролог в Комрате | Петкова Дениза Константиновна | Неврология и Нейропедиатрия Молдова"
+description: "Профессиональная неврология и нейропедиатрия в Комрате, Молдова. SRL NeuroDeny - врач высшей категории Петкова Дениза Константиновна. Лечение неврологических заболеваний взрослых и детей. Запись на прием +373 696 93 900"
+---
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container">
+        <h1>{{ settings.site.name }}</h1>
+        <p class="subtitle">Неврология, нейропедиатрия и хирургия</p>
+        <p class="description">Профессиональная медицинская помощь с заботой о вашем здоровье</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="cta-button">Записаться на прием</a>
+            <a href="tel:{{ settings.contact.phone | replace(' ', '') }}" class="cta-button cta-phone">📞 Позвонить</a>
+        </div>
+    </div>
+</section>
+
+<!-- О нас -->
+<section id="about" class="about">
+    <div class="container">
+        <h2>О клинике</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Частная клиника <strong>SRL "NeuroDeny"</strong> — специализированный медицинский центр неврологии в Комрате, Молдова.</p>
+                <p>У нас работает врач-невролог <strong>с высшей категорией</strong>, принимающий как детей, так и взрослых пациентов.</p>
+                <p>Мы предлагаем профессиональную медицинскую помощь с индивидуальным подходом к каждому пациенту. В нашей клинике доступна бронь стационара для комфортного пребывания.</p>
+                <p><strong>📞 Запись на прием:</strong> {{ settings.contact.workingHours.appointment }}</p>
+            </div>
+            <div class="about-images">
+                <img src="/images/clinic/office-1.png" alt="Кабинет невролога" class="clinic-photo">
+                <img src="/images/clinic/office-2.png" alt="Кабинет невролога" class="clinic-photo">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Врачи -->
+<section id="doctors" class="doctors">
+    <div class="container">
+        <h2>Наши специалисты</h2>
+        <div class="doctors-grid">
+            {% for doctor in doctors %}
+            <div class="doctor-card">
+                <div class="doctor-image">
+                    <img src="{{ doctor.image }}" alt="{{ doctor.name }}">
+                    <div class="doctor-badge">{{ doctor.category }}</div>
+                </div>
+                <p class="doctor-name">{{ doctor.name }}</p>
+                <div class="doctor-details">
+                    <div class="doctor-detail-item">
+                        <span class="detail-label">Специализация:</span>
+                        <span class="detail-value">{{ doctor.specialty }}</span>
+                    </div>
+                    <div class="doctor-detail-item">
+                        <span class="detail-label">Опыт работы:</span>
+                        <span class="detail-value">{{ doctor.experience }}</span>
+                    </div>
+                </div>
+                <p class="doctor-description">{{ doctor.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Услуги -->
+<section id="services" class="services">
+    <div class="container">
+        <h2>Наши услуги</h2>
+        <div class="services-grid">
+            {% for category in services %}
+            <div class="service-category">
+                <h3>{{ category.category }}</h3>
+                <ul class="service-list">
+                    {% for item in category.items %}
+                    <li>
+                        <span class="service-name">{{ item.name }}</span>
+                        <span class="service-price">{{ item.price }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Отзывы -->
+<section id="reviews" class="reviews">
+    <div class="container">
+        <h2>Отзывы пациентов</h2>
+        <div class="reviews-grid">
+            {% for review in reviews %}
+            <div class="review-card">
+                <div class="review-rating">{% for i in range(1, review.rating + 1) %}★{% endfor %}</div>
+                <p class="review-text">"{{ review.text }}"</p>
+                <p class="review-author">— {{ review.author }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Контакты -->
+<section id="contact" class="contact">
+    <div class="container">
+        <h2>Контакты</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Телефон</h3>
+                    <p><a href="tel:{{ settings.contact.phone | replace(' ', '') }}">{{ settings.contact.phone }}</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:{{ settings.contact.email }}">{{ settings.contact.email }}</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>График работы</h3>
+                    <p>{{ settings.contact.workingHours.weekdays }}<br>{{ settings.contact.workingHours.saturday }}</p>
+                    <p class="appointment-info">
+                        <strong>{{ settings.contact.workingHours.appointment }}</strong><br>
+                        <small style="font-size: 0.9em; opacity: 0.95; margin-top: 0.5rem; display: block;">Звонить по указанному телефону</small>
+                    </p>
+                </div>
+                <div class="contact-item">
+                    <h3>Адрес</h3>
+                    <p>{{ settings.contact.address.city }}, {{ settings.contact.address.street }}<br>{{ settings.contact.address.postalCode }}, {{ settings.contact.address.country }}</p>
+                </div>
+            </div>
+            <div class="contact-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.5!2d{{ settings.contact.coordinates.longitude }}!3d{{ settings.contact.coordinates.latitude }}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c5d31b58767b703%3A0xc84793c05ef95bd4!2z0JrQu9C40L3QuNC60LAgIk5ldXJvRGVueSI!5e0!3m2!1sru!2s!4v1234567890"
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                
+                <!-- Diplomas Gallery -->
+                <div class="diplomas-section" id="diplomas">
+                    <h3>Дипломы и сертификаты</h3>
+                    <div class="diplomas-gallery">
+                        <div class="diploma-thumbnail" onclick="openDiploma('/images/diplomas/chrome_RmlS4rCUmO.png')">
+                            <img src="/images/diplomas/chrome_RmlS4rCUmO.png" alt="Диплом 1">
+                            <div class="diploma-overlay"></div>
+                        </div>
+                        <div class="diploma-thumbnail" onclick="openDiploma('/images/diplomas/chrome_nuA8xIi2om.png')">
+                            <img src="/images/diplomas/chrome_nuA8xIi2om.png" alt="Диплом 2">
+                            <div class="diploma-overlay"></div>
+                        </div>
+                        <div class="diploma-thumbnail" onclick="openDiploma('/images/diplomas/Telegram_DZ7aUqimYz.jpg')">
+                            <img src="/images/diplomas/Telegram_DZ7aUqimYz.jpg" alt="Диплом 3">
+                            <div class="diploma-overlay"></div>
+                        </div>
+                        <div class="diploma-thumbnail" onclick="openDiploma('/images/diplomas/Telegram_Mmlk6spNHu.png')">
+                            <img src="/images/diplomas/Telegram_Mmlk6spNHu.png" alt="Диплом 4">
+                            <div class="diploma-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Diploma Modal -->
+<div id="diplomaModal" class="diploma-modal" onclick="closeDiploma()">
+    <span class="diploma-close">&times;</span>
+    <img class="diploma-modal-content" id="diplomaImage">
+    <div class="diploma-caption">Нажмите в любом месте для закрытия</div>
+</div>

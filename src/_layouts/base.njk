@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="{{ settings.site.language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>{{ title or settings.site.title }}</title>
+    <meta name="description" content="{{ description or settings.site.description }}">
+    <meta name="keywords" content="{{ settings.site.keywords }}">
+    <meta name="author" content="{{ settings.site.author }}">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Russian">
+    
+    <!-- Geographic Tags -->
+    <meta name="geo.region" content="MD-GA">
+    <meta name="geo.placename" content="Комрат, Молдова">
+    <meta name="geo.position" content="{{ settings.contact.coordinates.latitude }};{{ settings.contact.coordinates.longitude }}">
+    <meta name="ICBM" content="{{ settings.contact.coordinates.latitude }}, {{ settings.contact.coordinates.longitude }}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ settings.site.url }}">
+    <meta property="og:title" content="{{ title or settings.site.title }}">
+    <meta property="og:description" content="{{ description or settings.site.description }}">
+    <meta property="og:image" content="{{ settings.site.url }}images/logo/logo.png">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ settings.site.url }}">
+    <meta property="twitter:title" content="{{ title or settings.site.title }}">
+    <meta property="twitter:description" content="{{ description or settings.site.description }}">
+    <meta property="twitter:image" content="{{ settings.site.url }}images/logo/logo.png">
+    
+    <!-- Mobile App Meta Tags -->
+    <meta name="theme-color" content="{{ settings.site.themeColor }}">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="NeuroDeny">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/logo/logo.png">
+    <link rel="apple-touch-icon" href="/images/logo/logo.png">
+    <link rel="canonical" href="{{ settings.site.url }}">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Tailwind CSS (migration) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#255282',
+                        secondary: '#0694CB',
+                    }
+                }
+            },
+            corePlugins: { preflight: false }
+        }
+    </script>
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      "name": "{{ settings.site.name }}",
+      "image": "{{ settings.site.url }}images/logo/logo.png",
+      "description": "{{ settings.site.description }}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ settings.contact.address.street }}",
+        "addressLocality": "{{ settings.contact.address.city }}",
+        "postalCode": "{{ settings.contact.address.postalCode }}",
+        "addressCountry": "MD"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": {{ settings.contact.coordinates.latitude }},
+        "longitude": {{ settings.contact.coordinates.longitude }}
+      },
+      "url": "{{ settings.site.url }}",
+      "telephone": "{{ settings.contact.phone | replace(' ', '') }}",
+      "email": "{{ settings.contact.email }}",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "15:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "14:00"
+        }
+      ],
+      "medicalSpecialty": ["Neurology", "Pediatric Neurology"],
+      "priceRange": "$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "{{ reviews.length }}"
+      }
+    }
+    </script>
+</head>
+<body>
+    {% include "mascot.njk" %}
+    {% include "scripts.njk" %}
+    {% include "navigation.njk" %}
+    
+    {{ content | safe }}
+    
+    {% include "footer.njk" %}
+</body>
+</html>
