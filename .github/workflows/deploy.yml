@@ -3,10 +3,10 @@ name: Build and Deploy to GitHub Pages
 on:
   push:
     branches:
-      - lab4
+      - master
   pull_request:
     branches:
-      - lab4
+      - master
 
 permissions:
   contents: read
