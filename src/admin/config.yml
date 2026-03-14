@@ -4,6 +4,7 @@ backend:
   branch: master
   base_url: https://api.netlify.com
   auth_endpoint: auth
+  site_domain: nimble-otter-6a3519.netlify.app
 
 # Опция для локальной разработки (раскомментировать при необходимости)
 # local_backend: true
