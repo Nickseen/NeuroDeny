@@ -6,7 +6,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("sitemap.xml");
   eleventyConfig.addPassthroughCopy("google356c63625b25c074.html");
-  eleventyConfig.addPassthroughCopy("src/admin");
+  eleventyConfig.addPassthroughCopy("src/admin/config.yml");
   eleventyConfig.addPassthroughCopy({ "src/.nojekyll": ".nojekyll" });
 
   // Copy CSS and images from root (for compatibility)
