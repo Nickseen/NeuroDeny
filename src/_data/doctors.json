@@ -1,20 +1,22 @@
-[
-  {
-    "name": "Петкова Дениза Константиновна",
-    "specialty": "Неврология, педиатрия",
-    "experience": "23 года",
-    "category": "Высшая категория",
-    "description": "Специализируется на диагностике и лечении неврологических заболеваний у взрослых и детей",
-    "image": "/images/doctors/neurologist.png",
-    "order": 1
-  },
-  {
-    "name": "Якоми Владимир Владимирович",
-    "specialty": "Общая хирургия",
-    "experience": "44 года",
-    "category": "Высшая категория",
-    "description": "Специализируется на общей хирургии, амбулаторных операциях",
-    "image": "/images/doctors/placeholder-surgeon.svg",
-    "order": 2
-  }
-]
+{
+  "doctors": [
+    {
+      "name": "Петкова Дениза Константиновна",
+      "specialty": "Неврология, педиатрия",
+      "experience": "23 года",
+      "category": "Высшая категория",
+      "description": "Специализируется на диагностике и лечении неврологических заболеваний у взрослых и детей",
+      "image": "/images/doctors/neurologist.png",
+      "order": 1
+    },
+    {
+      "name": "Якоми Владимир Владимирович",
+      "specialty": "Общая хирургия",
+      "experience": "44 года",
+      "category": "Высшая категория",
+      "description": "Специализируется на общей хирургии, амбулаторных операциях",
+      "image": "/images/doctors/placeholder-surgeon.svg",
+      "order": 2
+    }
+  ]
+}
