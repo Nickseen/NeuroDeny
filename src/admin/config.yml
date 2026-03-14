@@ -127,7 +127,7 @@ collections:
               - { label: "Автор", name: "author", widget: "string" }
               - { label: "Рейтинг", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
               - { label: "Текст отзыва", name: "text", widget: "text" }
-              - { label: "Дата", name: "date", widget: "date", format: "YYYY-MM-DD" }
+              - { label: "Дата", name: "date", widget: "datetime", time_format: false, format: "YYYY-MM-DD" }
               - { label: "Показывать на главной", name: "featured", widget: "boolean", default: true }
 
   # Блог/Статьи
@@ -140,7 +140,7 @@ collections:
       - { label: "Layout", name: "layout", widget: "hidden", default: "blog-post.njk" }
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Описание", name: "description", widget: "text" }
-      - { label: "Дата публикации", name: "date", widget: "date", format: "YYYY-MM-DD" }
+      - { label: "Дата публикации", name: "date", widget: "datetime", time_format: false, format: "YYYY-MM-DD" }
       - { label: "Автор", name: "author", widget: "string", default: "Петкова Дениза Константиновна" }
       - { label: "Изображение", name: "image", widget: "image", required: false }
       - { label: "Теги", name: "tags", widget: "list", required: false }
