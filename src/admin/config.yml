@@ -9,7 +9,10 @@ backend:
 # local_backend: true
 
 media_folder: "images/uploads"
-public_folder: "/images/uploads"
+public_folder: "/NeuroDeny/images/uploads"
+
+site_url: https://nickseen.github.io/NeuroDeny
+display_url: https://nickseen.github.io/NeuroDeny
 
 locale: "ru"
 
@@ -74,51 +77,60 @@ collections:
   # Врачи
   - name: "doctors"
     label: "👨‍⚕️ Врачи"
-    file: "src/_data/doctors.json"
-    fields:
-      - label: "Список врачей"
-        name: "doctors"
-        widget: "list"
+    files:
+      - name: "doctors_list"
+        label: "Список врачей"
+        file: "src/_data/doctors.json"
         fields:
-          - { label: "ФИО", name: "name", widget: "string" }
-          - { label: "Специализация", name: "specialty", widget: "string" }
-          - { label: "Опыт работы", name: "experience", widget: "string" }
-          - { label: "Категория", name: "category", widget: "string" }
-          - { label: "Описание", name: "description", widget: "text" }
-          - { label: "Фото", name: "image", widget: "image" }
-          - { label: "Порядок", name: "order", widget: "number", value_type: "int", default: 1 }
+          - label: "Список врачей"
+            name: "doctors"
+            widget: "list"
+            fields:
+              - { label: "ФИО", name: "name", widget: "string" }
+              - { label: "Специализация", name: "specialty", widget: "string" }
+              - { label: "Опыт работы", name: "experience", widget: "string" }
+              - { label: "Категория", name: "category", widget: "string" }
+              - { label: "Описание", name: "description", widget: "text" }
+              - { label: "Фото", name: "image", widget: "image" }
+              - { label: "Порядок", name: "order", widget: "number", value_type: "int", default: 1 }
 
   # Услуги
   - name: "services"
     label: "💊 Услуги"
-    file: "src/_data/services.json"
-    fields:
-      - label: "Категории услуг"
-        name: "services"
-        widget: "list"
+    files:
+      - name: "services_list"
+        label: "Список услуг"
+        file: "src/_data/services.json"
         fields:
-          - { label: "Категория", name: "category", widget: "string" }
-          - label: "Услуги"
-            name: "items"
+          - label: "Категории услуг"
+            name: "services"
             widget: "list"
             fields:
-              - { label: "Название", name: "name", widget: "string" }
-              - { label: "Цена", name: "price", widget: "string" }
+              - { label: "Категория", name: "category", widget: "string" }
+              - label: "Услуги"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Название", name: "name", widget: "string" }
+                  - { label: "Цена", name: "price", widget: "string" }
 
   # Отзывы
   - name: "reviews"
     label: "⭐ Отзывы"
-    file: "src/_data/reviews.json"
-    fields:
-      - label: "Отзывы пациентов"
-        name: "reviews"
-        widget: "list"
+    files:
+      - name: "reviews_list"
+        label: "Отзывы пациентов"
+        file: "src/_data/reviews.json"
         fields:
-          - { label: "Автор", name: "author", widget: "string" }
-          - { label: "Рейтинг", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
-          - { label: "Текст отзыва", name: "text", widget: "text" }
-          - { label: "Дата", name: "date", widget: "date", format: "YYYY-MM-DD" }
-          - { label: "Показывать на главной", name: "featured", widget: "boolean", default: true }
+          - label: "Отзывы пациентов"
+            name: "reviews"
+            widget: "list"
+            fields:
+              - { label: "Автор", name: "author", widget: "string" }
+              - { label: "Рейтинг", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+              - { label: "Текст отзыва", name: "text", widget: "text" }
+              - { label: "Дата", name: "date", widget: "date", format: "YYYY-MM-DD" }
+              - { label: "Показывать на главной", name: "featured", widget: "boolean", default: true }
 
   # Блог/Статьи
   - name: "blog"
