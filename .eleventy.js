@@ -1,19 +1,14 @@
 module.exports = function(eleventyConfig) {
   // Copy static assets
-  eleventyConfig.addPassthroughCopy("src/assets/css");
-  eleventyConfig.addPassthroughCopy("src/assets/js");
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("sitemap.xml");
   eleventyConfig.addPassthroughCopy("google356c63625b25c074.html");
   eleventyConfig.addPassthroughCopy("src/admin/config.yml");
   eleventyConfig.addPassthroughCopy({ "src/.nojekyll": ".nojekyll" });
-
-  // Copy CSS and images from root (for compatibility)
   eleventyConfig.addPassthroughCopy("css");
 
   // Watch for CSS changes
-  eleventyConfig.addWatchTarget("src/assets/css/");
   eleventyConfig.addWatchTarget("css/");
 
   // BrowserSync config
