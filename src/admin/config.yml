@@ -91,6 +91,7 @@ collections:
               - { label: "Описание", name: "description", widget: "text" }
               - { label: "Фото", name: "image", widget: "image" }
               - { label: "Порядок", name: "order", widget: "number", value_type: "int", default: 1 }
+              - { label: "Скрыть", name: "hidden", widget: "boolean", default: false }
 
   # Услуги
   - name: "services"
@@ -111,6 +112,7 @@ collections:
                 fields:
                   - { label: "Название", name: "name", widget: "string" }
                   - { label: "Цена", name: "price", widget: "string" }
+                  - { label: "Скрыть", name: "hidden", widget: "boolean", default: false }
 
   # Отзывы
   - name: "reviews"
@@ -129,6 +131,7 @@ collections:
               - { label: "Текст отзыва", name: "text", widget: "text" }
               - { label: "Дата", name: "date", widget: "datetime", time_format: false, format: "YYYY-MM-DD" }
               - { label: "Показывать на главной", name: "featured", widget: "boolean", default: true }
+              - { label: "Скрыть", name: "hidden", widget: "boolean", default: false }
 
   # Блог/Статьи
   - name: "blog"
