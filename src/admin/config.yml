@@ -130,7 +130,6 @@ collections:
               - { label: "Рейтинг", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
               - { label: "Текст отзыва", name: "text", widget: "text" }
               - { label: "Дата", name: "date", widget: "datetime", time_format: false, format: "YYYY-MM-DD" }
-              - { label: "Показывать на главной", name: "featured", widget: "boolean", default: true }
               - { label: "Скрыть", name: "hidden", widget: "boolean", default: false }
 
   # Блог/Статьи
