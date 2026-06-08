@@ -43,7 +43,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ '/images/logo/logo.png' | url }}">
     <link rel="apple-touch-icon" href="{{ '/images/logo/logo.png' | url }}">
-    <link rel="canonical" href="{{ settings.site.url }}">
+    <link rel="canonical" href="{{ page.url | absoluteUrl(settings.site.url) }}">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ '/css/reset.css' | url }}">
@@ -106,18 +106,18 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
-        "reviewCount": "{{ reviews.length }}"
+        "reviewCount": "{{ reviews.reviews | visibleReviewCount }}"
       }
     }
     </script>
 </head>
 <body>
     {% include "mascot.njk" %}
-    {% include "scripts.njk" %}
     {% include "navigation.njk" %}
     
     {{ content | safe }}
     
     {% include "footer.njk" %}
+    {% include "scripts.njk" %}
 </body>
 </html>

@@ -6,13 +6,47 @@ description: "Профессиональная неврология и нейр�
 
 <!-- Hero Section -->
 <section id="home" class="hero">
-    <div class="container">
-        <h1>{{ settings.site.name }}</h1>
-        <p class="subtitle">Неврология, нейропедиатрия и хирургия</p>
-        <p class="description">Профессиональная медицинская помощь с заботой о вашем здоровье</p>
-        <div class="cta-buttons">
-            <a href="#contact" class="cta-button">Записаться на прием</a>
-            <a href="tel:{{ settings.contact.phone | replace(' ', '') }}" class="cta-button cta-phone">📞 Позвонить</a>
+    <div class="hero-ambient" aria-hidden="true"></div>
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <p class="hero-kicker">Комрат · неврология для взрослых и детей</p>
+            <h1>
+                <span>SRL</span>
+                <span>NeuroDeny</span>
+            </h1>
+            <p class="subtitle">Клиническая точность, спокойный прием и понятный план лечения.</p>
+            <p class="description">Неврология, нейропедиатрия и хирургия в частной клинике с врачами высшей категории.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-button">Записаться на прием</a>
+                <a href="tel:{{ settings.contact.phone | replace(' ', '') }}" class="cta-button cta-phone">Позвонить</a>
+            </div>
+            <div class="hero-facts" aria-label="Ключевые преимущества клиники">
+                <div>
+                    <strong>23+</strong>
+                    <span>года опыта невролога</span>
+                </div>
+                <div>
+                    <strong>2</strong>
+                    <span>направления приема</span>
+                </div>
+                <div>
+                    <strong>5.0</strong>
+                    <span>оценка пациентов</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Визуальная схема направлений NeuroDeny">
+            <div class="neuro-orbit">
+                <div class="orbit-ring orbit-ring-large"></div>
+                <div class="orbit-ring orbit-ring-medium"></div>
+                <div class="orbit-ring orbit-ring-small"></div>
+                <img src="{{ '/images/logo/logo.png' | url }}" alt="NeuroDeny" class="orbit-logo">
+                <span class="orbit-node node-neurology">Неврология</span>
+                <span class="orbit-node node-children">Дети</span>
+                <span class="orbit-node node-surgery">Хирургия</span>
+                <span class="orbit-node node-plan">План лечения</span>
+            </div>
         </div>
     </div>
 </section>
@@ -32,6 +66,39 @@ description: "Профессиональная неврология и нейр�
                 <img src="{{ '/images/clinic/office-1.png' | url }}" alt="Кабинет невролога" class="clinic-photo">
                 <img src="{{ '/images/clinic/office-2.png' | url }}" alt="Кабинет невролога" class="clinic-photo">
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Как проходит прием -->
+<section id="visit-flow" class="visit-flow">
+    <div class="container">
+        <div class="section-intro">
+            <p class="section-kicker">Маршрут пациента</p>
+            <h2>От первого звонка до понятного плана</h2>
+            <p>Сайт должен быстро отвечать на главный вопрос пациента: что будет дальше. Поэтому путь приема показан как простая последовательность без медицинского тумана.</p>
+        </div>
+        <div class="flow-track">
+            <article class="flow-step">
+                <span class="flow-number">01</span>
+                <h3>Запись</h3>
+                <p>Вы звоните в часы записи, уточняете возраст пациента, жалобы и удобное время приема.</p>
+            </article>
+            <article class="flow-step">
+                <span class="flow-number">02</span>
+                <h3>Осмотр</h3>
+                <p>Врач собирает анамнез, проверяет неврологический статус и объясняет, какие симптомы важны.</p>
+            </article>
+            <article class="flow-step">
+                <span class="flow-number">03</span>
+                <h3>Решение</h3>
+                <p>Пациент получает понятные рекомендации: лечение, дополнительные обследования или наблюдение.</p>
+            </article>
+            <article class="flow-step">
+                <span class="flow-number">04</span>
+                <h3>Контроль</h3>
+                <p>При необходимости назначается повторный визит, чтобы оценить динамику и скорректировать план.</p>
+            </article>
         </div>
     </div>
 </section>
@@ -63,6 +130,31 @@ description: "Профессиональная неврология и нейр�
             </div>
             {% endif %}
             {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Интерактивный навигатор симптомов -->
+<section id="symptoms" class="symptoms-lab">
+    <div class="container symptoms-grid">
+        <div class="symptoms-copy">
+            <p class="section-kicker">Нейро-навигатор</p>
+            <h2>Когда стоит обратиться к неврологу</h2>
+            <p>Выберите симптом, чтобы увидеть, на что обратить внимание перед консультацией. Информация помогает подготовиться к визиту и не является диагнозом.</p>
+        </div>
+        <div class="symptom-console" data-symptom-console>
+            <div class="symptom-buttons" role="tablist" aria-label="Симптомы">
+                <button class="symptom-chip is-active" type="button" data-symptom="headache">Головная боль</button>
+                <button class="symptom-chip" type="button" data-symptom="dizziness">Головокружение</button>
+                <button class="symptom-chip" type="button" data-symptom="child">Ребенок</button>
+                <button class="symptom-chip" type="button" data-symptom="sleep">Сон</button>
+            </div>
+            <div class="symptom-panel" aria-live="polite">
+                <p class="symptom-label">Сейчас выбрано</p>
+                <h3 data-symptom-title>Головная боль</h3>
+                <p data-symptom-text>Регулярная, усиливающаяся или необычная боль требует оценки невролога, особенно если она сопровождается тошнотой, нарушением зрения или онемением.</p>
+                <a href="#contact" class="symptom-link">Перейти к записи</a>
+            </div>
         </div>
     </div>
 </section>
@@ -104,6 +196,34 @@ description: "Профессиональная неврология и нейр�
                 <p class="review-author">— {{ review.author }}</p>
             </div>
             {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Полезные статьи -->
+<section id="blog" class="blog-teasers">
+    <div class="container">
+        <div class="section-intro">
+            <p class="section-kicker">Полезно прочитать</p>
+            <h2>Ответы на частые вопросы пациентов</h2>
+            <p>Короткие материалы помогают посетителю разобраться в симптомах и подготовиться к консультации.</p>
+        </div>
+        <div class="blog-grid">
+            {% for post in collections.blog %}
+            <article class="blog-card">
+                <a href="{{ post.url | url }}" class="blog-card-link">
+                    <div class="blog-card-image">
+                        <img src="{{ post.data.image | default('/images/logo/logo.png') | url }}" alt="{{ post.data.title }}">
+                    </div>
+                    <div class="blog-card-content">
+                        <time datetime="{{ post.date }}">{{ post.date | dateFormat }}</time>
+                        <h3>{{ post.data.title }}</h3>
+                        <p>{{ post.data.description }}</p>
+                        <span>Читать статью</span>
+                    </div>
+                </a>
+            </article>
             {% endfor %}
         </div>
     </div>

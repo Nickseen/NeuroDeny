@@ -13,7 +13,7 @@ layout: base.njk
     
     {% if image %}
     <div class="post-image" style="margin-bottom: 2rem;">
-        <img src="{{ image }}" alt="{{ title }}" style="width: 100%; border-radius: 8px;">
+        <img src="{{ image | url }}" alt="{{ title }}" style="width: 100%; border-radius: 8px;">
     </div>
     {% endif %}
     
@@ -22,6 +22,6 @@ layout: base.njk
     </div>
     
     <footer class="post-footer" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
-        <a href="/#home" class="back-link" style="color: var(--primary-color); text-decoration: none;">← Вернуться на главную</a>
+        <a href="{{ '/#home' | url }}" class="back-link" style="color: var(--primary-color); text-decoration: none;">← Вернуться на главную</a>
     </footer>
 </article>

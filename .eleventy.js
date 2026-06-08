@@ -29,6 +29,21 @@ module.exports = function(eleventyConfig) {
     return excerpt + (content.length > 200 ? '...' : '');
   });
 
+  eleventyConfig.addFilter("absoluteUrl", function(path, siteUrl) {
+    const base = siteUrl.endsWith("/") ? siteUrl.slice(0, -1) : siteUrl;
+    const normalizedPath = path && path.startsWith("/") ? path : `/${path || ""}`;
+    return `${base}${normalizedPath}`;
+  });
+
+  eleventyConfig.addFilter("visibleReviewCount", function(items) {
+    return Array.isArray(items) ? items.filter(item => !item.hidden).length : 0;
+  });
+
+  eleventyConfig.addCollection("blog", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/blog/*.md")
+      .sort((a, b) => b.date - a.date);
+  });
+
   return {
     pathPrefix: "/NeuroDeny/",
     dir: {
