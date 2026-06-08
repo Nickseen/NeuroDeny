@@ -1,4 +1,10 @@
 module.exports = function(eleventyConfig) {
+  const assetVersion = process.env.GITHUB_SHA
+    ? process.env.GITHUB_SHA.slice(0, 7)
+    : Date.now().toString();
+
+  eleventyConfig.addGlobalData("assetVersion", assetVersion);
+
   // Copy static assets
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("robots.txt");
