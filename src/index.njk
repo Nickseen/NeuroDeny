@@ -36,17 +36,30 @@ description: "Профессиональная неврология и нейр�
             </div>
         </div>
 
-        <div class="hero-visual" aria-label="Визуальная схема направлений NeuroDeny">
-            <div class="neuro-orbit">
-                <div class="orbit-ring orbit-ring-large"></div>
-                <div class="orbit-ring orbit-ring-medium"></div>
-                <div class="orbit-ring orbit-ring-small"></div>
-                <img src="{{ '/images/logo/logo.png' | url }}" alt="NeuroDeny" class="orbit-logo">
-                <span class="orbit-node node-neurology">Неврология</span>
-                <span class="orbit-node node-children">Дети</span>
-                <span class="orbit-node node-surgery">Хирургия</span>
-                <span class="orbit-node node-plan">План лечения</span>
+        <div class="hero-visual" aria-label="Быстрая информация для записи">
+            <div class="hero-pulse-map" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
+            <aside class="hero-appointment-card">
+                <p class="hero-card-kicker">Быстрая запись</p>
+                <h2>Прием по предварительной записи</h2>
+                <div class="hero-card-row">
+                    <span>Запись</span>
+                    <strong>{{ settings.contact.workingHours.appointment }}</strong>
+                </div>
+                <div class="hero-card-row">
+                    <span>Телефон</span>
+                    <strong>{{ settings.contact.phone }}</strong>
+                </div>
+                <div class="hero-specialties" aria-label="Направления приема">
+                    <span>Неврология</span>
+                    <span>Нейропедиатрия</span>
+                    <span>Хирургия</span>
+                </div>
+                <a href="#contact" class="hero-card-link">Контакты и карта</a>
+            </aside>
         </div>
     </div>
 </section>
