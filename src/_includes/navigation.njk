@@ -4,6 +4,10 @@
         <div class="nav-content">
             <a href="#home" class="logo">
                 <img src="{{ '/images/logo/logo.png' | url }}" alt="NeuroDeny Logo">
+                <span class="logo-mark">
+                    <strong>NeuroDeny</strong>
+                    <span>Medical clinic</span>
+                </span>
             </a>
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Открыть меню">
                 <span></span>
@@ -18,7 +22,7 @@
                 <li><a href="#blog">Статьи</a></li>
                 <li><a href="#reviews">Отзывы</a></li>
                 <li><a href="#contact">Контакты</a></li>
-                <li class="nav-phone"><a href="tel:{{ settings.contact.phone | replace(' ', '') }}">📞 {{ settings.contact.phone }}</a></li>
+                <li class="nav-phone"><a href="tel:{{ settings.contact.phone | replace(' ', '') }}"><span>Позвонить</span>{{ settings.contact.phone }}</a></li>
             </ul>
         </div>
     </div>

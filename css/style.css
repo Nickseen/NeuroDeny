@@ -1366,17 +1366,122 @@ section h2,
 }
 
 .navigation {
+    padding: 0.85rem 0;
+    background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.92), rgba(240, 249, 250, 0.78));
+    backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(37, 82, 130, 0.08);
+    box-shadow: 0 14px 45px rgba(16, 34, 56, 0.08);
 }
 
 .nav-content {
     position: relative;
+    min-height: 68px;
+    padding: 0.55rem 0.7rem;
     gap: 1.25rem;
+    border: 1px solid rgba(37, 82, 130, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.nav-content::after {
+    content: '';
+    position: absolute;
+    left: 1.2rem;
+    right: 1.2rem;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--clinical-mint), var(--secondary-color), transparent);
+    opacity: 0.62;
 }
 
 .nav-menu {
     align-items: center;
-    gap: 1.15rem;
+    gap: 0.35rem;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: max-content;
+    padding: 0.2rem 0.65rem 0.2rem 0.25rem;
+    border-radius: 999px;
+}
+
+.logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(37, 82, 130, 0.12);
+}
+
+.logo-mark {
+    display: grid;
+    gap: 0.08rem;
+    line-height: 1;
+}
+
+.logo-mark strong {
+    color: var(--primary-color);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    letter-spacing: 0;
+}
+
+.logo-mark span {
+    color: var(--secondary-color);
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.nav-menu a {
+    padding: 0.72rem 0.85rem;
+    border-radius: 999px;
+    color: rgba(16, 34, 56, 0.82);
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.nav-menu a::after {
+    display: none;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-color);
+    background: rgba(64, 199, 167, 0.12);
+    transform: translateY(-1px);
+}
+
+.nav-phone {
+    display: block;
+    margin-left: 0.25rem;
+}
+
+.nav-phone a {
+    display: grid;
+    gap: 0.08rem;
+    padding: 0.62rem 1rem;
+    color: white;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 12px 30px rgba(6, 148, 203, 0.24);
+}
+
+.nav-phone a span {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.nav-phone a:hover {
+    color: white;
+    background: linear-gradient(135deg, var(--secondary-color), var(--clinical-mint));
 }
 
 .nav-toggle {
@@ -2058,6 +2163,19 @@ section h2,
 }
 
 @media (max-width: 1024px) {
+    .logo-mark span {
+        display: none;
+    }
+
+    .nav-menu a {
+        padding: 0.65rem 0.7rem;
+        font-size: 0.84rem;
+    }
+
+    .nav-phone a {
+        padding: 0.56rem 0.82rem;
+    }
+
     .hero-grid,
     .symptoms-grid {
         grid-template-columns: 1fr;
@@ -2091,6 +2209,34 @@ section h2,
 }
 
 @media (max-width: 820px) {
+    .navigation {
+        padding: 0.5rem 0;
+    }
+
+    .nav-content {
+        min-height: 58px;
+        padding: 0.4rem;
+        border-radius: 24px;
+    }
+
+    .logo {
+        gap: 0.55rem;
+        padding-right: 0.35rem;
+    }
+
+    .logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .logo-mark strong {
+        font-size: 0.98rem;
+    }
+
+    .logo-mark span {
+        font-size: 0.56rem;
+    }
+
     .nav-toggle {
         display: inline-flex;
         margin-left: auto;
@@ -2129,6 +2275,16 @@ section h2,
         background: rgba(37, 82, 130, 0.04);
     }
 
+    .nav-phone {
+        grid-column: 1 / -1;
+        margin-left: 0;
+    }
+
+    .nav-phone a {
+        justify-content: center;
+        text-align: center;
+    }
+
     .hero {
         min-height: auto;
         padding: 64px 16px 56px;
@@ -2165,6 +2321,10 @@ section h2,
 
     .hero h1 {
         font-size: clamp(2.7rem, 15vw, 3.5rem);
+    }
+
+    .logo-mark span {
+        display: none;
     }
 
     .hero .cta-buttons {
