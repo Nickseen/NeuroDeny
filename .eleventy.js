@@ -8,7 +8,6 @@ module.exports = function(eleventyConfig) {
   // Copy static assets
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("robots.txt");
-  eleventyConfig.addPassthroughCopy("sitemap.xml");
   eleventyConfig.addPassthroughCopy("google356c63625b25c074.html");
   eleventyConfig.addPassthroughCopy("src/admin/config.yml");
   eleventyConfig.addPassthroughCopy({ "src/.nojekyll": ".nojekyll" });
@@ -36,18 +35,55 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addFilter("absoluteUrl", function(path, siteUrl) {
+    if (!path) return siteUrl;
+    if (/^https?:\/\//i.test(path)) return path;
     const base = siteUrl.endsWith("/") ? siteUrl.slice(0, -1) : siteUrl;
-    const normalizedPath = path && path.startsWith("/") ? path : `/${path || ""}`;
+    const normalizedPath = path.startsWith("/") ? path : `/${path}`;
     return `${base}${normalizedPath}`;
+  });
+
+  eleventyConfig.addFilter("json", function(value) {
+    return JSON.stringify(value);
+  });
+
+  eleventyConfig.addFilter("htmlDateString", function(date) {
+    return new Date(date).toISOString().split("T")[0];
   });
 
   eleventyConfig.addFilter("visibleReviewCount", function(items) {
     return Array.isArray(items) ? items.filter(item => !item.hidden).length : 0;
   });
 
+  eleventyConfig.addFilter("serviceSchema", function(categories) {
+    const services = [];
+    if (!Array.isArray(categories)) return "[]";
+
+    categories.forEach(category => {
+      if (!Array.isArray(category.items)) return;
+      category.items.forEach(item => {
+        if (item.hidden) return;
+        services.push({
+          "@type": "Service",
+          "name": item.name,
+          "serviceType": category.category,
+          "areaServed": "Комрат, Гагаузия, Молдова",
+          "provider": { "@id": "https://nickseen.github.io/NeuroDeny/#clinic" }
+        });
+      });
+    });
+
+    return JSON.stringify(services);
+  });
+
   eleventyConfig.addCollection("blog", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/blog/*.md")
       .sort((a, b) => b.date - a.date);
+  });
+
+  eleventyConfig.addCollection("sitemapPages", function(collectionApi) {
+    return collectionApi.getAll()
+      .filter(item => item.url && !item.inputPath.includes("/admin/") && !item.data.eleventyExcludeFromCollections)
+      .sort((a, b) => a.url.localeCompare(b.url));
   });
 
   return {

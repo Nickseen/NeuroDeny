@@ -1,6 +1,30 @@
 ---
 layout: base.njk
+pageType: article
 ---
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "{{ page.url | absoluteUrl(settings.site.url) }}#article",
+  "mainEntityOfPage": "{{ page.url | absoluteUrl(settings.site.url) }}",
+  "headline": {{ title | json | safe }},
+  "description": {{ description | json | safe }},
+  "image": "{{ image | absoluteUrl(settings.site.url) }}",
+  "datePublished": "{{ date | htmlDateString }}",
+  "dateModified": "{{ date | htmlDateString }}",
+  "author": {
+    "@type": "Person",
+    "name": {{ author | json | safe }}
+  },
+  "publisher": {
+    "@id": "{{ settings.site.url }}#clinic"
+  },
+  "inLanguage": "ru",
+  "about": ["неврология", "нейропедиатрия", "Комрат", "Молдова"]
+}
+</script>
 
 <article class="blog-post container" style="max-width: 900px; margin: 100px auto 50px; padding: 20px;">
     <header class="post-header" style="margin-bottom: 2rem; border-bottom: 2px solid #e0e0e0; padding-bottom: 1.5rem;">

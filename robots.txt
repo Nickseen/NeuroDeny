@@ -1,14 +1,28 @@
 # robots.txt for NeuroDeny
 User-agent: *
 Allow: /
+Disallow: /admin/
 
-# Sitemap
+# AI/search crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
 Sitemap: https://nickseen.github.io/NeuroDeny/sitemap.xml
-
-# Crawl delay (optional)
-Crawl-delay: 0
-
-# Disallow admin/technical files
-Disallow: /css/
-Disallow: /*.css$
-Disallow: /*.js$

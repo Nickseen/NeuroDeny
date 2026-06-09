@@ -2162,6 +2162,62 @@ section h2,
     margin-left: 0.45rem;
 }
 
+.faq-section {
+    background:
+        linear-gradient(180deg, #ffffff, #eef7f5);
+}
+
+.faq-list {
+    max-width: 920px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.faq-item {
+    border: 1px solid rgba(37, 82, 130, 0.12);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 16px 44px rgba(37, 82, 130, 0.08);
+    overflow: hidden;
+}
+
+.faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1.15rem 1.3rem;
+    color: var(--primary-color);
+    font-weight: 800;
+    line-height: 1.35;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: '+';
+    flex: 0 0 auto;
+    color: var(--secondary-color);
+    font-size: 1.35rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-item p {
+    margin: 0;
+    padding: 0 1.3rem 1.2rem;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
 @media (max-width: 1024px) {
     .logo-mark span {
         display: none;

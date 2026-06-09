@@ -1,7 +1,7 @@
 ---
 layout: base.njk
-title: "NeuroDeny - Невролог в Комрате | Петкова Дениза Константиновна | Неврология и Нейропедиатрия Молдова"
-description: "Профессиональная неврология и нейропедиатрия в Комрате, Молдова. SRL NeuroDeny - врач высшей категории Петкова Дениза Константиновна. Лечение неврологических заболеваний взрослых и детей. Запись на прием +373 696 93 900"
+title: "Невролог в Комрате - NeuroDeny | Нейропедиатрия и хирургия"
+description: "SRL NeuroDeny в Комрате: консультация невролога и нейропедиатра для взрослых и детей, хирургия. Запись: +373 696 93 900"
 ---
 
 <!-- Hero Section -->
@@ -237,6 +237,25 @@ description: "Профессиональная неврология и нейр�
                     </div>
                 </a>
             </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+    <div class="container">
+        <div class="section-intro">
+            <p class="section-kicker">Частые вопросы</p>
+            <h2>Коротко о записи, приеме и услугах</h2>
+            <p>Ответы на основные вопросы помогают быстрее понять, подходит ли клиника под вашу ситуацию.</p>
+        </div>
+        <div class="faq-list">
+            {% for item in faqs.items %}
+            <details class="faq-item" {% if loop.first %}open{% endif %}>
+                <summary>{{ item.question }}</summary>
+                <p>{{ item.answer }}</p>
+            </details>
             {% endfor %}
         </div>
     </div>
